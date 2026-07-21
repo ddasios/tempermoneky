@@ -48,7 +48,6 @@
     function waitAndFill() {
         const params = new URLSearchParams(window.location.search);
 
-        // https://steiledema.boxnow.gr/apostoli-dematos?name=Dennis%20Dasios&email=ddasios@gmail.com&phone=6938386367&sender_name=DIRTY NOISE&sender_id=AK617339&sender_email=info@dirtynoise.gr&sender_phone=6940262673&sender_vat=075513870&price=50&sender_address=Διδότου 49&sender_zip=10680&sender_city=Αθήνα&locker=BOX NOW STORE - Νέος Κόσμος 3 - Θεοδώρητου Βρεσθένης 53, 11743, Αθήνα
         setInput('senderName', params.get('sender_name'));
         setInput('senderIdentificationNumber', params.get('sender_id'));
         setInput('senderEmail', params.get('sender_email'));
