@@ -1,4 +1,3 @@
-
 (function() {
     'use strict';
 
@@ -212,11 +211,11 @@
     }
 
     const iframeTimer = setInterval(() => {
-        const boxInput = document.querySelector('#boxnow_widget_input');
+        let boxInput = document.querySelector('#boxnow_widget_input');
 
         if (boxInput) {
             clearInterval(iframeTimer);
-
+            console.log('Found boxnow input:', boxInput);
             const setter = Object.getOwnPropertyDescriptor(
                 HTMLInputElement.prototype,
                 'value'
@@ -231,10 +230,15 @@
 
             setter.call(boxInput, locker);
 
-            boxInput.dispatchEvent(new InputEvent('input', {
+            boxInput.focus();
+
+            boxInput.dispatchEvent(new Event('input', {
+                bubbles: true
+            }));
+
+            boxInput.dispatchEvent(new KeyboardEvent('keyup', {
                 bubbles: true,
-                inputType: 'insertText',
-                data: locker
+                key: 'Enter'
             }));
 
             console.log('Filled search:', locker);
@@ -246,6 +250,8 @@
 
                 if (options.length > 0) {
                     clearInterval(optionTimer);
+
+                    console.log('Clicking suggestion:', options[0]);
 
                     options[0].click();
 
